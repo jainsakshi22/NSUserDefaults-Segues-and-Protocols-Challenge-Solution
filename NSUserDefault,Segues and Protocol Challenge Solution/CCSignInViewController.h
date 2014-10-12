@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CCCreateAccountViewController.h"
 
-@interface CCSignInViewController : UIViewController
+@interface CCSignInViewController : UIViewController <CCCreateAccountViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;

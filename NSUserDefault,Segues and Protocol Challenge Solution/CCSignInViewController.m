@@ -25,15 +25,36 @@
 }
 
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.destinationViewController isKindOfClass:[CCCreateAccountViewController class]])
+    {
+        CCCreateAccountViewController *createAccountVC = segue.destinationViewController;
+        createAccountVC.delegate = self;
+    }
+}
+
 - (IBAction)createItemBarButtonPressed:(UIBarButtonItem *)sender
 {
     //Without this, Segues will not work
-    [self performSegueWithIdentifier:@"toViewControllerSegue" sender:sender];
+    [self performSegueWithIdentifier:@"toCreateAccountViewControlerSegue"  sender:sender];
 }
 
 - (IBAction)loginButtonPressed:(UIButton *)sender
 {
-    [self performSegueWithIdentifier:@"toCreateAccountViewControlerSegue" sender:sender];
+    [self performSegueWithIdentifier:@"toViewControllerSegue" sender:sender];
+}
+
+#pragma mark - CCCreateAccountViewControllerDelegate method
+
+-(void)didCancel
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)didCreateAccount
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*
