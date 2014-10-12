@@ -42,7 +42,18 @@
 
 - (IBAction)loginButtonPressed:(UIButton *)sender
 {
-    [self performSegueWithIdentifier:@"toViewControllerSegue" sender:sender];
+    NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey: USER_NAME];
+    NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey: USER_PASSWORD];
+    
+    if ([self.usernameTextField.text isEqualToString:username] && [self.passwordTextField.text isEqualToString:password])
+    {
+        [self performSegueWithIdentifier:@"toViewControllerSegue" sender:sender];
+    }
+    else
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Username or password is incorrect"  delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles: nil];
+        [alertView show];
+    }
 }
 
 #pragma mark - CCCreateAccountViewControllerDelegate method
